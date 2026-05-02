@@ -5,7 +5,7 @@ Constantes y funciones auxiliares compartidas por todo el proyecto.
 
 import numpy as np
 import pandas as pd
-from typing import tuple
+from typing import Tuple, List
 
 
 
@@ -95,7 +95,8 @@ ENGINEERED_COLS = [
     'age_group', 'is_first_choice'
 ]
 
-def detect_csv_type(df: pd.DataFrame) -> str:
+def detect_csv_type(df: pd.DataFrame) -> Tuple[str, list]:
+
     """
     Detecta el tipo de CSV recibido.
     Retorna: 'raw' | 'processed' | 'invalid'
