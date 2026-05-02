@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Entornos virtuales
+.venv
+venv/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# uv
+uv.lock
+
+# Datos — no subir raw ni procesados
+data/raw/
+data/processed/
+data/train/
+data/test/
+
+# Modelos entrenados — solo subimos el final
+models/trained_model_*.pkl
+models/trained_model_*.pkl.sha256
+models/trained_model_kmeans.pkl.sha256
+
+# Docs — presentaciones y documentos grandes
+docs/.vscode/
+.vscode/
+
+# Archivos de configuración local
+.python-version
+.env
+.env.local

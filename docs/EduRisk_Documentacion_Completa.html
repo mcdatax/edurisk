@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRisk – Documentación Completa v1.0</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --primary: #1a3a5c;
+  --primary-mid: #1d5fa6;
+  --primary-light: #e8f1fb;
+  --accent: #c0392b;
+  --accent-light: #fdecea;
+  --green: #1a7a4a;
+  --green-light: #e6f7ee;
+  --amber: #b7600a;
+  --amber-light: #fdf0e0;
+  --purple: #5b3fa6;
+  --purple-light: #eeebfd;
+  --text: #1a1a1a;
+  --muted: #5c5c5c;
+  --border: #d5d5d0;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+  --mono: 'Consolas','Monaco',monospace;
+  --sans: system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.65;font-size:14px}
+
+/* COVER */
+.cover{background:linear-gradient(140deg,#0d2540 0%,var(--primary) 55%,var(--primary-mid) 100%);color:#fff;padding:56px 52px 48px}
+.cover-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 10px;margin-bottom:18px}
+.cover h1{font-size:40px;font-weight:700;letter-spacing:-.5px;margin-bottom:4px}
+.cover .sub{font-size:17px;opacity:.75;margin-bottom:6px}
+.cover .tagline{font-size:13px;opacity:.58;margin-bottom:36px;max-width:640px;line-height:1.65}
+.cover-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px 28px;border-top:1px solid rgba(255,255,255,0.18);padding-top:20px}
+.cover-meta dt{opacity:.5;text-transform:uppercase;letter-spacing:.06em;font-size:10px;margin-bottom:3px}
+.cover-meta dd{font-weight:600;font-size:13px}
+
+/* LAYOUT */
+.container{max-width:1000px;margin:0 auto;padding:0 44px 80px}
+
+/* TOC */
+.toc{background:var(--primary-light);border-left:4px solid var(--primary-mid);padding:24px 28px;margin:44px 0;border-radius:0 8px 8px 0}
+.toc-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:14px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 40px}
+.toc ol{padding-left:18px;list-style:decimal}
+.toc li{margin-bottom:6px}
+.toc a{color:var(--primary);text-decoration:none;font-weight:500;font-size:13px}
+.toc a:hover{text-decoration:underline}
+.toc .sub{font-size:11px;color:var(--muted);font-weight:400;display:block}
+
+/* SECTIONS */
+.section{margin-top:64px;padding-top:4px;border-top:1px solid var(--border)}
+.tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 9px;border-radius:3px;margin-bottom:10px}
+.tag.blue{background:var(--primary-light);color:var(--primary)}
+.tag.green{background:var(--green-light);color:var(--green)}
+.tag.amber{background:var(--amber-light);color:var(--amber)}
+.tag.purple{background:var(--purple-light);color:var(--purple)}
+.tag.red{background:var(--accent-light);color:var(--accent)}
+.section h2{font-size:26px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
+.section h3{font-size:16px;font-weight:600;margin:28px 0 10px;color:var(--primary)}
+.lead{color:var(--muted);max-width:760px;margin-bottom:22px;line-height:1.75}
+code{font-family:var(--mono);background:#ededea;padding:1px 5px;border-radius:3px;font-size:12px;color:var(--purple)}
+pre{background:#0d1117;color:#c9d1d9;font-family:var(--mono);font-size:12px;line-height:1.75;border-radius:8px;padding:22px 26px;overflow-x:auto;margin:12px 0 20px;border:1px solid #30363d}
+
+/* DIAGRAM */
+.diagram-wrap{background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;padding:28px 18px;overflow-x:auto;margin-bottom:16px}
+.diagram-wrap .mermaid{display:flex;justify-content:center;min-height:80px}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 20px}
+thead th{background:var(--primary);color:#fff;padding:10px 14px;text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+thead th:first-child{border-radius:4px 0 0 0}thead th:last-child{border-radius:0 4px 0 0}
+tbody td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even) td{background:var(--bg-alt)}
+
+/* CALLOUTS */
+.callout{border-left:4px solid;border-radius:0 6px 6px 0;padding:14px 18px;font-size:13px;margin:14px 0;line-height:1.65}
+.callout.blue{background:var(--primary-light);border-color:var(--primary-mid);color:#0a2040}
+.callout.amber{background:var(--amber-light);border-color:var(--amber);color:#3d2000}
+.callout.green{background:var(--green-light);border-color:var(--green);color:#0a2d1a}
+.callout.red{background:var(--accent-light);border-color:var(--accent);color:#4a0a0a}
+
+/* FEATURE SPLIT */
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.split-box{border-radius:8px;padding:18px 20px;border:1px solid}
+.split-box.enrollment{background:var(--green-light);border-color:var(--green)}
+.split-box.semester{background:var(--accent-light);border-color:var(--accent);opacity:.7}
+.split-box h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.split-box.enrollment h4{color:var(--green)}
+.split-box.semester h4{color:var(--accent)}
+.split-box ul{padding-left:16px;font-size:12px;line-height:1.8;color:var(--text)}
+
+/* CHECKLIST */
+.phase-block{margin-bottom:32px}
+.phase-header{display:flex;align-items:center;gap:12px;padding:13px 18px;border-radius:6px 6px 0 0;color:#fff}
+.phase-num{background:rgba(255,255,255,0.2);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.phase-title{font-weight:600;font-size:15px}
+.phase-days{margin-left:auto;font-size:12px;opacity:.8;white-space:nowrap}
+.phase-body{border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;overflow:hidden}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5}
+.check-item:last-child{border-bottom:none}
+.check-item:nth-child(even){background:var(--bg-alt)}
+.check-box{width:16px;height:16px;border:2px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;transition:all .15s}
+.check-box:hover{border-color:var(--primary-mid);background:var(--primary-light)}
+.item-text{flex:1}
+.item-text strong{color:var(--primary);display:block;margin-bottom:2px}
+.item-text span{color:var(--muted);font-size:12px}
+.bdg{font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;margin-left:6px;display:inline-block}
+.bdg-red{background:var(--accent-light);color:var(--accent)}
+.bdg-green{background:var(--green-light);color:var(--green)}
+.bdg-purple{background:var(--purple-light);color:var(--purple)}
+.bdg-amber{background:var(--amber-light);color:var(--amber)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);margin-top:64px;padding:20px 44px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-badge">ML Project · Bootcamp The Bridge · UML 2.5</div>
+  <h1>EduRisk</h1>
+  <p class="sub">Early Student Dropout Prediction System</p>
+  <p class="tagline">Predicción temprana de abandono universitario usando únicamente datos del día de matrícula. Orquestación con Airflow, mensajería Pub/Sub, ML explicable con SHAP y dashboard en tiempo real.</p>
+  <dl class="cover-meta">
+    <div><dt>Versión</dt><dd>1.0</dd></div>
+    <div><dt>Fecha</dt><dd>26 Abr 2025</dd></div>
+    <div><dt>Dataset</dt><dd>UCI #697</dd></div>
+    <div><dt>Instancias</dt><dd>4.424</dd></div>
+    <div><dt>Features</dt><dd>36 → usamos ~20</dd></div>
+    <div><dt>Target</dt><dd>Dropout/Enrolled/Graduate</dd></div>
+    <div><dt>Entrega</dt><dd>4 Mayo 2025</dd></div>
+    <div><dt>UML</dt><dd>6 diagramas</dd></div>
+  </dl>
+</div>
+
+<div class="container">
+
+<nav class="toc">
+  <div class="toc-title">Tabla de contenidos</div>
+  <div class="toc-grid">
+    <ol>
+      <li><a href="#overview">Resumen y valor de negocio<span class="sub">problema, impacto, stack</span></a></li>
+      <li><a href="#features">Feature split – La clave del proyecto<span class="sub">matrícula vs semestre</span></a></li>
+      <li><a href="#arch">Arquitectura del sistema<span class="sub">diagrama completo de capas</span></a></li>
+      <li><a href="#cleaning">Plan de limpieza y FE<span class="sub">decisiones técnicas documentadas</span></a></li>
+      <li><a href="#models">Plan de modelado<span class="sub">6 modelos, GridSearch, métricas</span></a></li>
+      <li><a href="#airflow">Airflow DAG<span class="sub">5 tasks, schedule, fallbacks</span></a></li>
+    </ol>
+    <ol start="7">
+      <li><a href="#uml1">UML: Casos de uso</a></li>
+      <li><a href="#uml2">UML: Diagrama de clases</a></li>
+      <li><a href="#uml3">UML: Diagrama de secuencia</a></li>
+      <li><a href="#uml4">UML: Diagrama de actividades</a></li>
+      <li><a href="#uml5">UML: Diagrama de componentes</a></li>
+      <li><a href="#uml6">UML: Diagrama de despliegue</a></li>
+      <li><a href="#folders">Estructura de carpetas</a></li>
+      <li><a href="#checklist">Checklist por fases ✓</a></li>
+    </ol>
+  </div>
+</nav>
+
+
+<!-- 1. OVERVIEW -->
+<section class="section" id="overview">
+  <span class="tag blue">Sección 1</span>
+  <h2>Resumen y valor de negocio</h2>
+  <p class="lead">EduRisk predice si un estudiante abandonará la universidad, se graduará o seguirá matriculado — usando <strong>solo los datos disponibles el día de la matrícula</strong>, sin esperar a ver su rendimiento académico. Esto permite intervención temprana real.</p>
+
+  <h3>¿Por qué "solo datos de matrícula" es el WOW?</h3>
+  <div class="callout green">
+    <strong>El insight clave:</strong> cualquiera puede predecir abandono cuando ya sabes que el alumno suspendió 10 asignaturas. EduRisk lo predice <em>antes de que empiece el curso</em>, con datos administrativos. Eso es lo que las universidades realmente necesitan — tiempo para intervenir.
+  </div>
+
+  <h3>Stack tecnológico</h3>
+  <table>
+    <thead><tr><th>Capa</th><th>Tecnología</th><th>Justificación</th></tr></thead>
+    <tbody>
+      <tr><td>Dataset</td><td>UCI #697 – Student Dropout</td><td>4.424 rows · 36 feat · sin nulls · paper académico validado</td></tr>
+      <tr><td>ML / Pipelines</td><td>scikit-learn · XGBoost · PCA</td><td>Requerido bootcamp · multiclase · PCA sobre vars socioeconómicas</td></tr>
+      <tr><td>Interpretabilidad</td><td>SHAP</td><td>EU AI Act readiness → directo a TFM UNAV</td></tr>
+      <tr><td>Orquestación</td><td>Apache Airflow Standalone</td><td>Estándar industria · simula ingest de nuevas matrículas</td></tr>
+      <tr><td>Mensajería</td><td>GCP Pub/Sub emulado :8085</td><td>Arquitectura cloud-native sin coste</td></tr>
+      <tr><td>Almacenamiento</td><td>SQLite → Cloud SQL (prod)</td><td>Zero dependencias dev · migración trivial</td></tr>
+      <tr><td>Dashboard</td><td>Streamlit :8501</td><td>Requerido bootcamp · auto-refresh</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Objetivos de negocio</h3>
+  <table>
+    <thead><tr><th>Objetivo</th><th>Cómo lo resuelve EduRisk</th><th>KPI</th></tr></thead>
+    <tbody>
+      <tr><td>Detectar riesgo de abandono en el día 0</td><td>Modelo entrenado solo con features de matrícula</td><td>Recall(Dropout) ≥ 0.75</td></tr>
+      <tr><td>Priorizar intervención de tutores</td><td>Score de riesgo 0-1 + alerta si P(Dropout) > 0.60</td><td>Alertas con Precision ≥ 0.70</td></tr>
+      <tr><td>Entender factores de abandono</td><td>SHAP global + waterfall por estudiante</td><td>Top 5 features explicadas</td></tr>
+      <tr><td>Comparar predicción temprana vs tardía</td><td>Modelo A (matrícula) vs Modelo B (todas features)</td><td>ΔF1 documentado</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- 2. FEATURE SPLIT -->
+<section class="section" id="features">
+  <span class="tag green">Sección 2 – LA CLAVE DEL PROYECTO</span>
+  <h2>Feature split – Matrícula vs Semestre</h2>
+  <p class="lead">El dataset tiene 36 features. El trick técnico que diferencia este proyecto es separar qué se sabe el día 0 (matrícula) de qué solo se sabe meses después (rendimiento académico). Entrenamos dos modelos y comparamos.</p>
+
+  <div class="split-grid">
+    <div class="split-box enrollment">
+      <h4>✅ Grupo A – Features de matrícula (día 0)</h4>
+      <ul>
+        <li>Marital status</li>
+        <li>Application mode</li>
+        <li>Application order</li>
+        <li>Course</li>
+        <li>Daytime/evening attendance</li>
+        <li>Previous qualification</li>
+        <li>Previous qualification (grade)</li>
+        <li>Nationality</li>
+        <li>Mother's qualification</li>
+        <li>Father's qualification</li>
+        <li>Mother's occupation</li>
+        <li>Father's occupation</li>
+        <li>Admission grade</li>
+        <li>Displaced</li>
+        <li>Educational special needs</li>
+        <li>Debtor</li>
+        <li>Tuition fees up to date</li>
+        <li>Gender</li>
+        <li>Scholarship holder</li>
+        <li>Age at enrollment</li>
+        <li>International</li>
+        <li>GDP · Inflation · Unemployment</li>
+      </ul>
+    </div>
+    <div class="split-box semester">
+      <h4>❌ Grupo B – Features post-matrícula (NO usar en modelo principal)</h4>
+      <ul>
+        <li>Curricular units 1st sem (credited)</li>
+        <li>Curricular units 1st sem (enrolled)</li>
+        <li>Curricular units 1st sem (evaluations)</li>
+        <li>Curricular units 1st sem (approved)</li>
+        <li>Curricular units 1st sem (grade)</li>
+        <li>Curricular units 1st sem (without evaluations)</li>
+        <li>Curricular units 2nd sem (credited)</li>
+        <li>Curricular units 2nd sem (enrolled)</li>
+        <li>Curricular units 2nd sem (evaluations)</li>
+        <li>Curricular units 2nd sem (approved)</li>
+        <li>Curricular units 2nd sem (grade)</li>
+        <li>Curricular units 2nd sem (without evaluations)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <strong>Dos modelos a entrenar:</strong><br>
+    <strong>Modelo Early (principal):</strong> Solo Grupo A — ~22 features · predicción día 0 · el que se despliega en producción.<br>
+    <strong>Modelo Full (baseline):</strong> Todas las features — para comparar en la presentación y demostrar el trade-off entre disponibilidad y accuracy.
+  </div>
+
+  <h3>Variables macro (GDP, Inflation, Unemployment)</h3>
+  <p class="lead">Son las condiciones económicas del país en el momento de la matrícula. Un alumno que se matricula en año de crisis económica tiene más probabilidad de abandonar por necesidades laborales. Esto es feature engineering implícito que ya viene en el dataset — documéntalo en la presentación.</p>
+</section>
+
+
+<!-- 3. ARQUITECTURA -->
+<section class="section" id="arch">
+  <span class="tag blue">Sección 3</span>
+  <h2>Arquitectura del sistema</h2>
+  <pre>
+┌──────────────────────────────────────────────────────────────────────┐
+│                        FUENTES DE DATOS                              │
+└─────────────────────────────────────────────────────────────────────┘
+              │                                    │
+    ┌─────────▼──────────┐              ┌──────────▼──────────┐
+    │  UCI Dataset       │              │  SyntheticGenerator  │
+    │  data/raw/*.csv    │              │  simula matrículas   │
+    │  4.424 estudiantes │              │  nuevas en tiempo    │
+    │  (entrenamiento)   │              │  real (demo)         │
+    └─────────┬──────────┘              └──────────┬──────────┘
+              │ aprende distribuciones             │ genera JSON
+              │                                    │
+┌─────────────▼────────────────────────────────────▼──────────────────┐
+│                      AIRFLOW DAG                                     │
+│              edurisk_enrollment_pipeline                             │
+│              schedule: */2 * * * *  (cada 2 min en demo)            │
+│                                                                      │
+│  [fetch_or_simulate] → [validate_enrollment] → [publish_to_pubsub]  │
+│           ↓                     ↓                      ↓            │
+│    OpenEnrollment API      schema check           topic: edu-enroll  │
+│    o simulador local       + feature split                           │
+│                                                                      │
+│  [predict_risk] → [alert_manager]                                   │
+│        ↓                  ↓                                         │
+│   Pipeline sklearn     P(Dropout)>0.6 → ALERTA                      │
+│   + SHAP values        → INSERT SQLite                               │
+└─────────────────────────────────────┬────────────────────────────────┘
+                                      │
+                    ┌─────────────────┼──────────────────┐
+                    ▼                 ▼                   ▼
+         ┌──────────────┐   ┌──────────────┐   ┌─────────────────┐
+         │  Pub/Sub     │   │  sklearn     │   │  SQLite         │
+         │  Emulator    │──▶│  Pipeline    │──▶│  predictions.db │
+         │  :8085       │   │  Early Model │   │                 │
+         │  edu-enroll  │   │  + SHAP      │   └────────┬────────┘
+         └──────────────┘   └──────────────┘            │ SELECT
+                                                        ▼
+                                              ┌─────────────────┐
+                                              │  Streamlit      │
+                                              │  :8501          │
+                                              │  • Risk alerts  │
+                                              │  • SHAP plots   │
+                                              │  • Model A vs B │
+                                              │  • Manual pred  │
+                                              └─────────────────┘
+  </pre>
+
+  <h3>Narrativa de la demo en clase</h3>
+  <div class="callout blue">
+    Abres Streamlit. El DAG de Airflow está corriendo. Cada 2 minutos aparecen "nuevas matrículas" en el dashboard. El modelo predice inmediatamente si cada estudiante tiene riesgo de abandono. Los de alto riesgo aparecen en rojo con un SHAP waterfall explicando <em>por qué</em>: "beca = No · deudor = Sí · tasa matrícula al día = No → alto riesgo". Un tutor real tomaría acción inmediata.
+  </div>
+</section>
+
+
+<!-- 4. LIMPIEZA Y FE -->
+<section class="section" id="cleaning">
+  <span class="tag amber">Sección 4</span>
+  <h2>Plan de limpieza y Feature Engineering</h2>
+  <div class="callout green"><strong>Buena noticia:</strong> el dataset no tiene missing values — los autores hicieron preprocesado riguroso. Esto te da más tiempo para hacer feature engineering de calidad y PCA bien hecho.</div>
+
+  <h3>Limpieza necesaria</h3>
+  <table>
+    <thead><tr><th>Acción</th><th>Columnas</th><th>Justificación</th></tr></thead>
+    <tbody>
+      <tr><td>Verificar duplicados</td><td>Todas</td><td>Confirmar que no existen — documentarlo</td></tr>
+      <tr><td>Verificar outliers en grades</td><td><code>Previous qualification (grade)</code> · <code>Admission grade</code></td><td>Escala 0-200 · valores extremos plausibles pero verificar</td></tr>
+      <tr><td>Revisar distribución de target</td><td><code>Target</code></td><td>Desbalance: ~32% Dropout · ~50% Graduate · ~18% Enrolled → documentar estrategia</td></tr>
+      <tr><td>Codificar target</td><td><code>Target</code></td><td>Dropout=0 · Enrolled=1 · Graduate=2 (o OrdinalEncoder)</td></tr>
+      <tr><td>Separar feature split</td><td>Grupo A vs Grupo B</td><td>Crear dos DataFrames: <code>X_early</code> y <code>X_full</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Feature Engineering</h3>
+  <table>
+    <thead><tr><th>Feature nueva</th><th>Cálculo</th><th>Justificación de negocio</th></tr></thead>
+    <tbody>
+      <tr><td><code>parents_edu_avg</code></td><td>Media de Mother's + Father's qualification</td><td>Capital cultural familiar — predictor conocido de éxito académico</td></tr>
+      <tr><td><code>is_financially_vulnerable</code></td><td><code>debtor=1 OR tuition_not_uptodate=1</code></td><td>Riesgo financiero combinado — predictor directo de abandono</td></tr>
+      <tr><td><code>is_first_choice</code></td><td><code>application_order == 0</code></td><td>Motivación: eligió esta carrera como primera opción</td></tr>
+      <tr><td><code>admission_grade_norm</code></td><td><code>(grade - min) / (max - min)</code> por curso</td><td>La nota de admisión tiene significado relativo al curso, no absoluto</td></tr>
+      <tr><td><code>age_risk_group</code></td><td>bins: young(≤20) / adult(21-30) / mature(≥31)</td><td>Estudiantes maduros tienen más presión laboral y familiar</td></tr>
+      <tr><td><code>economic_stress_index</code></td><td>Z-score combinado de GDP + Inflation + Unemployment</td><td>Contexto macro en el año de matrícula como feature único</td></tr>
+      <tr><td><code>is_non_traditional</code></td><td><code>daytime=evening OR age>25 OR international=1</code></td><td>Perfil no tradicional tiene dinámicas de abandono diferentes</td></tr>
+    </tbody>
+  </table>
+
+  <h3>PCA – Plan de uso</h3>
+  <table>
+    <thead><tr><th>Uso</th><th>Sobre qué variables</th><th>Qué produce</th></tr></thead>
+    <tbody>
+      <tr><td>EDA exploratorio</td><td>Variables socioeconómicas (ocupación/educación padres + macro)</td><td>Scatter PC1 vs PC2 coloreado por Target — ¿se agrupan los Dropouts?</td></tr>
+      <tr><td>Scree plot</td><td>Todas las features Grupo A estandarizadas</td><td>¿Cuántos componentes explican el 90% de varianza?</td></tr>
+      <tr><td>Pipeline SVC</td><td>PCA(n_components=0.95) antes de SVC</td><td>Reducción dimensional para SVC que no escala bien con muchas features</td></tr>
+      <tr><td>Interpretación</td><td>Loadings de PC1/PC2</td><td>¿Qué features dominan cada componente? Narrativa de negocio</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <strong>Decisión técnica a documentar — desbalance de clases:</strong> ~32% Dropout · ~50% Graduate · ~18% Enrolled. El desbalance en "Enrolled" puede hacer que el modelo lo ignore. Estrategia: <code>class_weight='balanced'</code> en todos los modelos + evaluar con F1-weighted + confusion matrix 3×3. Documentar esta decisión en el notebook.
+  </div>
+</section>
+
+
+<!-- 5. MODELOS -->
+<section class="section" id="models">
+  <span class="tag green">Sección 5</span>
+  <h2>Plan de modelado</h2>
+
+  <table>
+    <thead><tr><th>#</th><th>Modelo</th><th>Tipo</th><th>Pipeline especial</th><th>Hiperparámetros GridSearch</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>LogisticRegression</td><td>Supervisado multiclase</td><td>StandardScaler → LR (multi_class=auto)</td><td><code>C=[0.01,0.1,1,10]</code> · <code>max_iter=[200,500]</code></td></tr>
+      <tr><td>2</td><td>RandomForestClassifier</td><td>Supervisado multiclase</td><td>ColumnTransformer → RF</td><td><code>n_estimators=[100,200]</code> · <code>max_depth=[5,10,None]</code></td></tr>
+      <tr><td>3</td><td>XGBClassifier ★</td><td>Supervisado multiclase</td><td>ColumnTransformer → XGB (objective=multi:softprob)</td><td><code>learning_rate</code> · <code>n_estimators</code> · <code>max_depth</code> · <code>subsample</code></td></tr>
+      <tr><td>4</td><td>SVC</td><td>Supervisado multiclase</td><td>StandardScaler → PCA(0.95) → SVC(probability=True)</td><td><code>C=[0.1,1,10]</code> · <code>kernel=['rbf','linear']</code></td></tr>
+      <tr><td>5</td><td>GradientBoostingClassifier</td><td>Supervisado multiclase</td><td>ColumnTransformer → GB (OvR)</td><td><code>n_estimators</code> · <code>learning_rate</code> · <code>max_depth</code></td></tr>
+      <tr><td>6</td><td>KMeans</td><td>No supervisado</td><td>StandardScaler → PCA(3) → KMeans</td><td><code>n_clusters=[3,4,5,6]</code> · Silhouette</td></tr>
+    </tbody>
+  </table>
+
+  <h3>El modelo estrella: Early vs Full</h3>
+  <div class="callout blue">
+    Entrenas XGBoost (o RF — el que gane) <strong>dos veces</strong>: una con Grupo A (matrícula) y otra con todas las features. En la presentación comparas las métricas. El Early model perderá algo de accuracy — eso es esperado y se documenta honestamente. El punto es que el Early model es <em>accionable</em> y el Full no lo es.
+  </div>
+
+  <h3>Métricas multiclase</h3>
+  <table>
+    <thead><tr><th>Métrica</th><th>Por qué</th><th>Mínimo</th><th>Objetivo</th></tr></thead>
+    <tbody>
+      <tr><td>F1-weighted</td><td>Métrica principal para multiclase desbalanceado</td><td>0.72</td><td>&gt;0.78</td></tr>
+      <tr><td>Recall (Dropout)</td><td>Coste de no detectar abandono &gt; falsa alarma</td><td>0.72</td><td>&gt;0.78</td></tr>
+      <tr><td>ROC-AUC (OvR macro)</td><td>Comparativa entre modelos</td><td>0.85</td><td>&gt;0.90</td></tr>
+      <tr><td>Confusion Matrix 3×3</td><td>Visualizar errores entre clases</td><td>—</td><td>Documentar dónde falla</td></tr>
+      <tr><td>Silhouette (KMeans)</td><td>Calidad de clusters</td><td>0.25</td><td>&gt;0.40</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- 6. AIRFLOW -->
+<section class="section" id="airflow">
+  <span class="tag amber">Sección 6</span>
+  <h2>Airflow DAG</h2>
+  <pre>
+dag = DAG(
+    dag_id       = 'edurisk_enrollment_pipeline',
+    schedule     = '*/2 * * * *',   # cada 2 min en demo
+    catchup      = False,
+    max_active_runs = 1,
+    default_args = {'retries': 1, 'retry_delay': timedelta(seconds=15)}
+)
+
+# TASK 1: Genera matrícula sintética (o lee batch real si existe)
+generate = PythonOperator(
+    task_id         = 'generate_enrollment',
+    python_callable = generate_synthetic_enrollment,
+    # SyntheticGenerator aprende distribuciones del train set
+    # Genera 1-5 matrículas nuevas por ejecución
+)
+
+# TASK 2: Valida el schema y aplica el feature split (solo Grupo A)
+validate = PythonOperator(
+    task_id         = 'validate_and_split_features',
+    python_callable = validate_enrollment_schema,
+    # Verifica campos obligatorios, rango de valores
+    # Extrae solo features de matrícula (Grupo A)
+)
+
+# TASK 3: Publica en Pub/Sub para desacoplar ingesta de predicción
+publish = PythonOperator(
+    task_id         = 'publish_to_pubsub',
+    python_callable = publish_enrollment,
+    # topic: edu-enrollment · mensaje: enrollment_json
+)
+
+# TASK 4: Suscriptor consume, predice con Early Model + calcula SHAP
+predict = PythonOperator(
+    task_id         = 'predict_dropout_risk',
+    python_callable = subscribe_and_predict,
+    # Pipeline sklearn cargado desde models/final_model.pkl
+    # Devuelve: proba[Dropout, Enrolled, Graduate] + shap_values
+)
+
+# TASK 5: Guarda en SQLite y emite alerta si P(Dropout) > 0.60
+alert = PythonOperator(
+    task_id         = 'save_and_alert',
+    python_callable = save_prediction_and_alert,
+)
+
+generate >> validate >> publish >> predict >> alert
+  </pre>
+</section>
+
+
+<!-- UML 1: USE CASE -->
+<section class="section" id="uml1">
+  <span class="tag purple">UML 2.5 · Use Case Diagram</span>
+  <h2>1. Diagrama de casos de uso</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+graph LR
+    DS(("«actor»\nData Scientist"))
+    TU(("«actor»\nTutor / Admin"))
+    AF(("«actor 2º»\nAirflow"))
+
+    UC1["UC-01\nEntrenar Early Model\n(features matrícula)"]
+    UC2["UC-02\nEntrenar Full Model\n(todas features)"]
+    UC3["UC-03\nComparar modelos\nEarly vs Full"]
+    UC4["UC-04\nAnalizar SHAP\ny PCA"]
+    UC5["UC-05\nConsultar dashboard\nde riesgo en vivo"]
+    UC6["UC-06\nPredecir estudiante\nmanual"]
+    UC7["UC-07\nOrquestar pipeline\nde matrículas"]
+    UC8["UC-08\nGenerar matrícula\nsintética"]
+
+    DS --> UC1
+    DS --> UC2
+    DS --> UC3
+    DS --> UC4
+    TU --> UC5
+    TU --> UC6
+    AF --> UC7
+
+    UC3 -.->|include| UC1
+    UC3 -.->|include| UC2
+    UC7 -.->|include| UC8
+    UC5 -.->|extend| UC6
+
+    style DS fill:#e8f1fb,stroke:#1d5fa6,color:#0a2040
+    style TU fill:#e8f1fb,stroke:#1d5fa6,color:#0a2040
+    style AF fill:#f0f0ee,stroke:#888,color:#333
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>ID</th><th>Actor</th><th>Caso de uso</th><th>Precondición</th><th>Postcondición</th></tr></thead>
+    <tbody>
+      <tr><td><code>UC-01</code></td><td>Data Scientist</td><td>Entrenar Early Model</td><td>data/processed con solo Grupo A</td><td>early_model.pkl en models/</td></tr>
+      <tr><td><code>UC-02</code></td><td>Data Scientist</td><td>Entrenar Full Model</td><td>data/processed con todas features</td><td>full_model.pkl en models/</td></tr>
+      <tr><td><code>UC-03</code></td><td>Data Scientist</td><td>Comparar modelos</td><td>Ambos modelos entrenados</td><td>Tabla comparativa + conclusión documentada</td></tr>
+      <tr><td><code>UC-04</code></td><td>Data Scientist</td><td>Analizar SHAP y PCA</td><td>Early model entrenado</td><td>Summary plot + scree plot + scatter 2D</td></tr>
+      <tr><td><code>UC-05</code></td><td>Tutor / Admin</td><td>Consultar dashboard</td><td>Sistema runtime activo, SQLite con datos</td><td>Vista de alertas y riesgo actualizadas</td></tr>
+      <tr><td><code>UC-06</code></td><td>Tutor / Admin</td><td>Predecir estudiante manual</td><td>early_model.pkl desplegado</td><td>P(Dropout/Enrolled/Graduate) + SHAP waterfall</td></tr>
+      <tr><td><code>UC-07</code></td><td>Airflow</td><td>Orquestar pipeline</td><td>DAG activo, servicios corriendo</td><td>Predicciones en SQLite</td></tr>
+      <tr><td><code>UC-08</code></td><td>Airflow via Generator</td><td>Generar matrícula sintética</td><td>Distribuciones aprendidas del train set</td><td>JSON publicado en Pub/Sub</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- UML 2: CLASS -->
+<section class="section" id="uml2">
+  <span class="tag purple">UML 2.5 · Class Diagram</span>
+  <h2>2. Diagrama de clases</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+classDiagram
+    direction TB
+
+    class EnrollmentRecord {
+        +student_id : str
+        +timestamp : str
+        +marital_status : int
+        +application_mode : int
+        +course : int
+        +previous_qualification : int
+        +admission_grade : float
+        +scholarship_holder : int
+        +age_at_enrollment : int
+        +debtor : int
+        +tuition_fees_uptodate : int
+        +gdp : float
+        +inflation : float
+        +unemployment : float
+        +to_json() str
+        +from_json(s : str) EnrollmentRecord
+        +validate() bool
+    }
+
+    class DataProcessor {
+        -raw_path : str
+        -processed_path : str
+        +load_raw() DataFrame
+        +verify_no_duplicates(df) bool
+        +encode_target(df) DataFrame
+        +split_feature_groups(df) tuple
+        +engineer_features(df) DataFrame
+        +build_column_transformer() ColumnTransformer
+        +split_train_test(df, test_size : float) tuple
+        +save_processed(df, name : str) None
+    }
+
+    class ModelTrainer {
+        -model_configs : dict
+        -best_params : dict
+        +build_pipeline(model : BaseEstimator, use_pca : bool) Pipeline
+        +grid_search(X : ndarray, y : ndarray, name : str) GridSearchCV
+        +train_early_model(X_early, y) Pipeline
+        +train_full_model(X_full, y) Pipeline
+        +train_unsupervised(X) Pipeline
+        +save_model(model : Pipeline, name : str) None
+        +select_best(metric : str) Pipeline
+    }
+
+    class ModelEvaluator {
+        -early_model : Pipeline
+        -full_model : Pipeline
+        +evaluate(model, X_test, y_test) dict
+        +compare_early_vs_full() DataFrame
+        +plot_confusion_matrix_3x3(model, X, y) Figure
+        +plot_roc_multiclass(models, X, y) Figure
+        +shap_summary(model, X) Figure
+        +shap_waterfall(model, X_instance) Figure
+        +pca_scatter(X, y) Figure
+        +scree_plot(X) Figure
+    }
+
+    class SyntheticGenerator {
+        -reference_df : DataFrame
+        -distributions : dict
+        +learn_distributions(df : DataFrame) None
+        +generate_enrollment() EnrollmentRecord
+        +apply_feature_split(record) dict
+    }
+
+    class DropoutPredictor {
+        -pipeline : Pipeline
+        -explainer : TreeExplainer
+        -threshold : float
+        -classes : list
+        +load_model(path : str) None
+        +predict(record : EnrollmentRecord) dict
+        +predict_proba(record : EnrollmentRecord) ndarray
+        +get_shap_values(record : EnrollmentRecord) dict
+    }
+
+    class AlertManager {
+        -threshold_dropout : float
+        -db_path : str
+        +init_db() None
+        +save_prediction(student_id, probas, shap_top3) None
+        +emit_alert(student_id, proba_dropout) None
+        +get_latest(n : int) DataFrame
+        +get_high_risk(threshold : float) DataFrame
+    }
+
+    SyntheticGenerator ..> DataProcessor : learns from
+    SyntheticGenerator ..> EnrollmentRecord : creates
+    ModelTrainer ..> DataProcessor : consumes
+    ModelEvaluator --> ModelTrainer : evaluates
+    DropoutPredictor ..> ModelTrainer : loads model
+    DropoutPredictor ..> EnrollmentRecord : processes
+    AlertManager --> DropoutPredictor : receives predictions
+    </div>
+  </div>
+</section>
+
+
+<!-- UML 3: SEQUENCE -->
+<section class="section" id="uml3">
+  <span class="tag purple">UML 2.5 · Sequence Diagram</span>
+  <h2>3. Diagrama de secuencia – Runtime pipeline</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+sequenceDiagram
+    participant A as Airflow DAG
+    participant G as SyntheticGenerator
+    participant P as Pub/Sub
+    participant D as DropoutPredictor
+    participant DB as SQLite
+    participant ST as Streamlit
+
+    loop cada 2 minutos
+        A->>+G: generate_enrollment()
+        G->>G: sample_from_distributions()
+        G->>G: apply_feature_split(Grupo A only)
+        G->>-P: publish(enrollment_json)
+
+        loop for each enrollment message
+            P->>+D: deliver_message(enrollment_json)
+            D->>D: pipeline.predict_proba(X_early)
+            D->>D: shap_values(X_early)
+
+            alt P(Dropout) > 0.60
+                D->>DB: INSERT prediction [ALERT=True, risk=HIGH]
+                D->>-DB: log_alert(student_id, proba)
+            else P(Dropout) <= 0.60
+                D->>-DB: INSERT prediction [ALERT=False]
+            end
+        end
+
+        ST->>DB: SELECT * ORDER BY ts DESC LIMIT 100
+        DB-->>ST: prediction rows
+        ST->>ST: render_risk_dashboard()
+        ST->>ST: display_high_risk_students()
+        ST->>ST: show_shap_explanation()
+    end
+    </div>
+  </div>
+</section>
+
+
+<!-- UML 4: ACTIVITY -->
+<section class="section" id="uml4">
+  <span class="tag purple">UML 2.5 · Activity Diagram</span>
+  <h2>4. Diagrama de actividades – Pipeline de entrenamiento</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+flowchart TD
+    S([Inicio]) --> A["Cargar UCI Dataset #697\n4.424 instancias · 36 features"]
+    A --> B["Inspección inicial\nshape · dtypes · balance de clases · 0 nulls"]
+    B --> C["Separar feature groups\nGrupo A matrícula vs Grupo B semestres"]
+    C --> D["Feature Engineering\n+7 features derivadas sobre Grupo A"]
+    D --> E["PCA exploratorio\nScree plot + scatter PC1 vs PC2"]
+    E --> F["Codificar target\nDropout=0 · Enrolled=1 · Graduate=2"]
+    F --> G["Split estratificado 80/20\nrandom_state=42"]
+    G --> H["Entrenar Early Model\nColumnTransformer + 5 supervisados + KMeans"]
+    H --> I["GridSearchCV cv=5\nscoring=f1_weighted"]
+    I --> J{Overfitting?}
+    J -- Sí --> K["Regularización /\naumentar min_samples"]
+    K --> I
+    J -- No --> L["Evaluar Early Model\nF1-weighted · Recall Dropout · ROC-AUC OvR"]
+    L --> M["Entrenar Full Model\nmismo pipeline · todas las features"]
+    M --> N["Comparar Early vs Full\ntabla de métricas · documentar trade-off"]
+    N --> O["SHAP summary + waterfall\npara Early Model"]
+    O --> P["SyntheticGenerator\naprende distribuciones de X_early train"]
+    P --> Q["joblib.dump()\nearly_model.pkl · full_model.pkl"]
+    Q --> END([Fin])
+
+    style S fill:#1a7a4a,color:#fff,stroke:#0d4a2a,stroke-width:2px
+    style END fill:#1a7a4a,color:#fff,stroke:#0d4a2a,stroke-width:2px
+    style J fill:#b7600a,color:#fff,stroke:#7a3a00,stroke-width:1.5px
+    </div>
+  </div>
+</section>
+
+
+<!-- UML 5: COMPONENT -->
+<section class="section" id="uml5">
+  <span class="tag purple">UML 2.5 · Component Diagram</span>
+  <h2>5. Diagrama de componentes</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+graph TB
+    subgraph EXT["«external» Fuentes externas"]
+        UCI["«artifact»\nUCI Dataset #697\ndata.csv"]
+    end
+
+    subgraph DL["«package» data/"]
+        RAW["«artifact»\nraw/data.csv"]
+        PROC["«artifact»\nprocessed/\nearly_features.parquet\nfull_features.parquet"]
+        TRTE["«artifact»\ntrain/ · test/"]
+    end
+
+    subgraph SRC["«package» src/"]
+        DP["«component»\nDataProcessor"]
+        MT["«component»\nModelTrainer"]
+        ME["«component»\nModelEvaluator"]
+        SG["«component»\nSyntheticGenerator"]
+        DP2["«component»\nDropoutPredictor"]
+        AM["«component»\nAlertManager"]
+    end
+
+    subgraph NB["«package» notebooks/"]
+        N1["01_Fuentes"]
+        N2["02_LimpiezaEDA"]
+        N3["03_Entrenamiento"]
+    end
+
+    subgraph ORCH["«subsystem» Orchestration"]
+        DAG["«component»\nAirflow DAG\nedurisk_enrollment_pipeline"]
+    end
+
+    subgraph MSG["«subsystem» Messaging"]
+        PS["«component»\nPub/Sub Emulator\ntopic: edu-enrollment"]
+    end
+
+    subgraph STORE["«subsystem» Storage"]
+        DB[("«database»\nSQLite\npredictions.db")]
+        MDL["«artifact»\nearly_model.pkl\nfull_model.pkl"]
+    end
+
+    subgraph UI["«subsystem» Presentation"]
+        ST["«component»\nStreamlit :8501"]
+    end
+
+    UCI --> RAW
+    N1 --> RAW
+    N2 --> DP
+    N3 --> MT & ME
+    RAW --> DP --> PROC --> TRTE
+    TRTE --> MT --> MDL
+    MDL --> DP2
+    SG -.-> DP
+    MT --> ME
+    DAG --> SG --> PS --> DP2 --> AM --> DB --> ST
+    </div>
+  </div>
+</section>
+
+
+<!-- UML 6: DEPLOYMENT -->
+<section class="section" id="uml6">
+  <span class="tag purple">UML 2.5 · Deployment Diagram</span>
+  <h2>6. Diagrama de despliegue</h2>
+  <div class="diagram-wrap">
+    <div class="mermaid">
+graph TB
+    subgraph DEV["«node» Developer Machine · localhost"]
+        subgraph AIR["«env» Airflow Standalone :8080"]
+            SCHED["«process» Scheduler"]
+            WRKR["«process» Worker"]
+        end
+        subgraph EMU["«env» GCP Pub/Sub Emulator :8085"]
+            TOPIC["topic: edu-enrollment"]
+            SUB["subscription: edu-sub"]
+        end
+        subgraph STENV["«env» Python Process"]
+            STAPP["«component» Streamlit :8501"]
+        end
+        SQDB[("«artifact»\nSQLite predictions.db")]
+        EPKL["«artifact» early_model.pkl"]
+        FPKL["«artifact» full_model.pkl"]
+    end
+
+    SCHED -->|"trigger task"| WRKR
+    WRKR -->|"publish(json)"| TOPIC
+    TOPIC --> SUB
+    SUB -->|"deliver"| WRKR
+    WRKR -->|"load"| EPKL
+    WRKR -->|"INSERT"| SQDB
+    STAPP -->|"SELECT"| SQDB
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Nodo dev</th><th>Equivalente GCP producción</th><th>Puerto</th></tr></thead>
+    <tbody>
+      <tr><td>Airflow Standalone</td><td>Cloud Composer 2</td><td>:8080 HTTP</td></tr>
+      <tr><td>Pub/Sub Emulator</td><td>GCP Pub/Sub managed</td><td>:8085 gRPC</td></tr>
+      <tr><td>Streamlit local</td><td>Cloud Run (serverless)</td><td>:8501 HTTP</td></tr>
+      <tr><td>SQLite</td><td>Cloud SQL PostgreSQL</td><td>— JDBC</td></tr>
+      <tr><td>models/*.pkl</td><td>GCS Bucket + Vertex AI</td><td>— GCS API</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- CARPETAS -->
+<section class="section" id="folders">
+  <span class="tag green">Sección 7</span>
+  <h2>Estructura de carpetas</h2>
+  <pre>
+edurisk/
+├── data/
+│   ├── raw/
+│   │   └── data.csv                          ← UCI #697 download
+│   ├── processed/
+│   │   ├── early_features.parquet            ← solo Grupo A
+│   │   └── full_features.parquet             ← todas las features
+│   ├── train/
+│   │   ├── train_early.parquet
+│   │   └── train_full.parquet
+│   └── test/
+│       ├── test_early.parquet
+│       └── test_full.parquet
+│
+├── notebooks/
+│   ├── 01_Fuentes.ipynb                      ← carga UCI + exploración inicial
+│   ├── 02_LimpiezaEDA.ipynb                  ← EDA + limpieza + FE + PCA
+│   └── 03_Entrenamiento_Evaluacion.ipynb     ← modelos + GridSearch + SHAP + comparativa
+│
+├── src/
+│   ├── data_processing.py                    ← DataProcessor
+│   ├── training.py                           ← ModelTrainer
+│   ├── evaluation.py                         ← ModelEvaluator
+│   ├── synthetic_generator.py                ← SyntheticGenerator ★
+│   ├── predictor.py                          ← DropoutPredictor ★
+│   └── alert_manager.py                      ← AlertManager ★
+│
+├── airflow/
+│   └── dags/
+│       └── edurisk_pipeline_dag.py           ← DAG 5 tasks ★
+│
+├── pubsub/
+│   └── emulator_setup.sh                     ← arranque emulador ★
+│
+├── models/
+│   ├── trained_model_lr.pkl
+│   ├── trained_model_rf.pkl
+│   ├── trained_model_xgb.pkl
+│   ├── trained_model_svc.pkl
+│   ├── trained_model_gb.pkl
+│   ├── trained_model_kmeans.pkl
+│   ├── early_model.pkl                       ← modelo principal (Grupo A)
+│   └── full_model.pkl                        ← baseline (todas features)
+│
+├── app_streamlit/
+│   ├── app.py                                ← dashboard live ★
+│   └── requirements.txt
+│
+├── docs/
+│   ├── EduRisk_Documentacion_Completa.html   ← este archivo
+│   ├── negocio.pptx
+│   └── ds.pptx
+│
+└── README.md
+
+★ = añadidos sobre el mínimo del bootcamp
+  </pre>
+</section>
+
+
+<!-- CHECKLIST -->
+<section class="section" id="checklist">
+  <span class="tag red">Sección 8 – CHECKLIST</span>
+  <h2>Checklist completo por fases</h2>
+
+  <div class="callout red" style="margin-bottom:28px">
+    <strong>Orden obligatorio:</strong> NO toques Airflow ni Pub/Sub hasta tener ambos modelos entrenados y serializados. El modelo es el núcleo. Sin él no hay nada que desplegar.
+  </div>
+
+  <!-- FASE 0 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:#0d2540">
+      <div class="phase-num">0</div>
+      <div class="phase-title">Setup del proyecto</div>
+      <div class="phase-days">Hoy · ~1.5h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear repo GitHub: <code>edurisk</code></strong><span>Público · descripción · licencia MIT · primer commit: <code>chore: init repo structure</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear estructura de carpetas completa</strong><span><code>mkdir -p data/{raw,processed,train,test} notebooks src airflow/dags pubsub models app_streamlit docs</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear entorno virtual</strong><span><code>python -m venv venv && source venv/bin/activate</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear <code>requirements.txt</code> base e instalar</strong><span>pandas · numpy · scikit-learn · xgboost · shap · streamlit · joblib · ucimlrepo · google-cloud-pubsub · apache-airflow</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Descargar dataset UCI #697</strong><span><code>from ucimlrepo import fetch_ucirepo</code> → guardar en <code>data/raw/data.csv</code> → confirmar: 4.424 rows · 36 cols</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear <code>.gitignore</code></strong><span>Excluir: <code>venv/</code> · <code>__pycache__/</code> · <code>*.pkl</code> · <code>.env</code> · <code>data/raw/</code> si >50MB</span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 1 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--primary)">
+      <div class="phase-num">1</div>
+      <div class="phase-title">Notebook 01 – Fuentes</div>
+      <div class="phase-days">Hoy · ~2h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Cargar dataset con <code>ucimlrepo</code> Y con <code>pd.read_csv</code></strong><span>Documentar ambas formas · confirmar shape · <code>df.info()</code> · <code>df.describe()</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Documentar el feature split en una celda Markdown</strong><span>Tabla: feature · grupo (A/B) · descripción · por qué disponible en día 0. Esta celda va a la presentación.</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear <code>X_early</code> y <code>X_full</code> como DataFrames separados</strong><span>Confirmar que <code>X_early</code> tiene ~22 columnas y ninguna del semestre</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Verificar y documentar cero missing values</strong><span><code>df.isnull().sum().sum() == 0</code> · célda con conclusión</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Guardar CSV limpio inicial</strong><span>Commit: <code>feat: notebook 01 data sources feature split</code></span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 2 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--primary-mid)">
+      <div class="phase-num">2</div>
+      <div class="phase-title">Notebook 02 – EDA, Limpieza y Feature Engineering</div>
+      <div class="phase-days">Días 1-2 · ~7h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Análisis de balance de clases</strong><span>Countplot + % de cada clase · Dropout ~32% · Graduate ~50% · Enrolled ~18% · documentar estrategia: <code>class_weight='balanced'</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Distribuciones de variables continuas</strong><span>Histogramas + KDE: <code>Age at enrollment</code> · <code>Admission grade</code> · <code>Previous qualification grade</code> · GDP · Inflation · Unemployment</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Análisis bivariante: cada feature vs Target</strong><span>Boxplots para numéricas · Barplots para categóricas · Identificar top predictores visuales</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Heatmap de correlaciones sobre Grupo A</strong><span>Solo features de matrícula · identificar multicolinealidad (especialmente variables de padres)</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Verificar outliers en grades</strong><span><code>Admission grade</code> y <code>Previous qualification grade</code> escala 0-200 · boxplots · decisión documentada</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Crear las 7 features nuevas</strong><span><code>parents_edu_avg</code> · <code>is_financially_vulnerable</code> · <code>is_first_choice</code> · <code>admission_grade_norm</code> · <code>age_risk_group</code> · <code>economic_stress_index</code> · <code>is_non_traditional</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>PCA – Scree plot sobre Grupo A</strong><span>StandardScaler → PCA · varianza explicada acumulada · marcar componente donde llega al 90% <span class="bdg bdg-purple">UNAV</span></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>PCA – Scatter PC1 vs PC2 coloreado por Target</strong><span>¿Se separan los Dropouts visualmente? · comentar loadings dominantes de PC1</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Codificar target</strong><span>Dropout=0 · Enrolled=1 · Graduate=2 · verificar con <code>value_counts()</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Split estratificado 80/20</strong><span><code>train_test_split(stratify=y, random_state=42)</code> · verificar proporciones en train y test</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Guardar parquets procesados</strong><span><code>data/processed/early_features.parquet</code> · <code>data/processed/full_features.parquet</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>src/data_processing.py</code></strong><span>Clase <code>DataProcessor</code> con toda la lógica del notebook refactorizada</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Commit</strong><span><code>feat: notebook 02 EDA FE PCA preprocessing</code></span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 3 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--green)">
+      <div class="phase-num">3</div>
+      <div class="phase-title">Notebook 03 – Modelado, Evaluación y SHAP</div>
+      <div class="phase-days">Días 3-4 · ~8h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Definir ColumnTransformer para Grupo A</strong><span>Numéricas → StandardScaler · Ordinales → OrdinalEncoder · Nominales → OneHotEncoder(drop='first')</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Construir Pipelines para 5 modelos supervisados</strong><span>LR · RF · XGB · SVC(con PCA) · GB · todos con <code>class_weight='balanced'</code> donde aplique</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>GridSearchCV en mínimo 3 modelos</strong><span>cv=5 · scoring='f1_weighted' · n_jobs=-1 · guardar <code>best_params_</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Tabla comparativa de métricas (Early Model)</strong><span>F1-weighted · Recall(Dropout) · ROC-AUC OvR macro · fit_time para los 5 modelos</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Confusion matrix 3×3 para el mejor modelo</strong><span>Annotated heatmap · identificar qué clase confunde más con cuál</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>ROC curves multiclase (OvR) en un gráfico</strong><span>Un color por modelo · AUC en leyenda · guardar como imagen</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>KMeans no supervisado sobre PCA(3)</strong><span>Silhouette score k=3..6 · elbow plot · perfilar clusters: ¿qué tipo de estudiante es cada uno?</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Entrenar Full Model (baseline con todas las features)</strong><span>Mismo pipeline del mejor modelo · entrenar con X_full · guardar como <code>full_model.pkl</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Tabla comparativa Early vs Full <span class="bdg bdg-red">WOW PRESENTACIÓN</span></strong><span>Mismo modelo, dos conjuntos de features · documentar el ΔF1 y ΔRecall · narrativa: "perdemos X% de accuracy pero ganamos semestres de ventaja"</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>SHAP summary plot (Global)</strong><span><code>shap.TreeExplainer(xgb)</code> · <code>summary_plot()</code> · top 5 features del Early Model <span class="bdg bdg-green">SHAP</span></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>SHAP waterfall plot (Local)</strong><span>Elegir un Dropout real · waterfall explicando por qué el modelo lo clasificó así · narrativa tutor <span class="bdg bdg-green">SHAP</span></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Serializar todos los modelos</strong><span><code>joblib.dump()</code> para cada modelo en <code>models/</code> · <code>early_model.pkl</code> y <code>full_model.pkl</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>src/training.py</code> y <code>src/evaluation.py</code></strong><span>Clases ModelTrainer y ModelEvaluator refactorizadas desde el notebook</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Commit</strong><span><code>feat: notebook 03 modeling evaluation SHAP early-vs-full</code></span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 4 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--purple)">
+      <div class="phase-num">4</div>
+      <div class="phase-title">Sistema en tiempo real – Generador, Pub/Sub, Airflow</div>
+      <div class="phase-days">Días 5-6 · ~10h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>src/synthetic_generator.py</code></strong><span>Clase <code>SyntheticGenerator</code> · <code>learn_distributions(X_early_train)</code> · <code>generate_enrollment()</code> produce <code>EnrollmentRecord</code> plausible</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>src/predictor.py</code></strong><span>Clase <code>DropoutPredictor</code> · <code>load_model(early_model.pkl)</code> · <code>predict()</code> devuelve dict con probas [Dropout, Enrolled, Graduate] + SHAP top 3</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>src/alert_manager.py</code></strong><span>Clase <code>AlertManager</code> · <code>init_db()</code> crea tabla SQLite · <code>save_prediction()</code> · <code>emit_alert()</code> si P(Dropout) > 0.60 · <code>get_high_risk()</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Arrancar emulador Pub/Sub y crear topic</strong><span><code>gcloud beta emulators pubsub start --host-port=localhost:8085</code> · topic: <code>edu-enrollment</code> · sub: <code>edu-sub</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Test end-to-end SIN Airflow <span class="bdg bdg-red">NO SALTAR</span></strong><span>Script manual: genera → publica → predice → SQLite tiene datos. Verifica que el pipeline completo funciona antes de meter Airflow.</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Instalar y configurar Airflow Standalone</strong><span><code>pip install apache-airflow</code> · <code>airflow standalone</code> · login localhost:8080 · apuntar DAGS_FOLDER a <code>airflow/dags/</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Implementar <code>airflow/dags/edurisk_pipeline_dag.py</code></strong><span>5 tasks encadenados · schedule */2 · catchup=False · max_active_runs=1</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Verificar DAG sin errores en Airflow UI</strong><span>Revisar logs de cada task · confirmar que SQLite se llena · trigger manual del DAG para test</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Commit</strong><span><code>feat: realtime pipeline generator pubsub predictor airflow</code></span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 5 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--amber)">
+      <div class="phase-num">5</div>
+      <div class="phase-title">Streamlit – Dashboard en tiempo real</div>
+      <div class="phase-days">Días 6-7 · ~5h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Sección: KPIs del modelo</strong><span>F1-weighted Early Model · Recall Dropout · ROC-AUC · Total predicciones hoy</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Sección: Alertas activas (P(Dropout) > 0.60)</strong><span>Tabla de alto riesgo · student_id · P(Dropout) · SHAP top-3 causas · destacado en rojo</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Sección: Feed de predicciones recientes</strong><span>Últimas 50 · timestamp · student_id · clase predicha · P(Dropout) · alerta sí/no</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Sección: Comparativa Early vs Full</strong><span>Tabla de métricas side-by-side · gráfico de barras · narrativa del trade-off</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Sección: Predictor manual</strong><span>Formulario con sliders/selectboxes para cada feature de matrícula · botón Predecir · muestra probas + SHAP waterfall</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Auto-refresh cada 10s</strong><span><code>time.sleep(10)</code> + <code>st.rerun()</code></span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Grabar video demo 30-60s <span class="bdg bdg-red">CRÍTICO</span></strong><span>Backup obligatorio por si falla algo en la presentación en vivo</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Commit</strong><span><code>feat: streamlit dashboard live alerts manual predictor</code></span></div></div>
+    </div>
+  </div>
+
+  <!-- FASE 6 -->
+  <div class="phase-block">
+    <div class="phase-header" style="background:var(--accent)">
+      <div class="phase-num">6</div>
+      <div class="phase-title">Presentación y entrega final</div>
+      <div class="phase-days">Días 7-8 · ~4h</div>
+    </div>
+    <div class="phase-body">
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>README.md completo</strong><span>Arquitectura · instrucciones setup en 5 pasos · cómo arrancar el sistema · link video demo · badges</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>negocio.pptx – presentación de negocio (70%)</strong><span>Problema → Valor → Demo → Resultados en lenguaje humano → Próximos pasos. Sin código. Sin jargon.</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>ds.pptx – presentación técnica (30%)</strong><span>Feature split → Arquitectura → Modelos → Early vs Full → SHAP → PCA → Limitaciones</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Ensayo completo 2 veces (máx 15 min) <span class="bdg bdg-red">CRÍTICO</span></strong><span>Medir tiempo · preparar respuestas a preguntas técnicas sobre el feature split y SHAP</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="item-text"><strong>Commit final + tag</strong><span><code>git tag v1.0.0 && git push --tags</code> · repo público y accesible</span></div></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:36px">Riesgos y mitigaciones</h3>
+  <table>
+    <thead><tr><th>Riesgo</th><th>Prob.</th><th>Mitigación</th></tr></thead>
+    <tbody>
+      <tr><td>SHAP lento en multiclase</td><td>Alta</td><td><code>shap.sample(X_test, 300)</code> · calcular solo para nuevas predicciones en runtime</td></tr>
+      <tr><td>Airflow difícil de configurar</td><td>Media</td><td><code>airflow standalone</code> 1 comando · fallback: <code>threading.Thread</code> si falla</td></tr>
+      <tr><td>Pub/Sub emulador inestable</td><td>Baja</td><td>Fallback: <code>queue.Queue</code> en memoria · misma interfaz</td></tr>
+      <tr><td>Enrolled class mal clasificada</td><td>Alta</td><td>Esperado — documentarlo honestamente. El modelo está optimizado para Dropout. Explicar en presentación.</td></tr>
+      <tr><td>No llegar a fase 4-5</td><td>Media</td><td>Fases 0-3 solas ya son un 8/10. Early vs Full + SHAP es el diferenciador real.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  <span>EduRisk · Documentación completa v1.0 · UML 2.5 · UCI Dataset #697</span>
+  <span>26 Abril 2025 · Bootcamp Data Science – The Bridge · Entrega: 4 Mayo 2025</span>
+</footer>
+
+<script>
+mermaid.initialize({
+  startOnLoad:true, theme:'neutral',
+  fontFamily:'system-ui,-apple-system,sans-serif', fontSize:13,
+  flowchart:{curve:'basis',padding:16,htmlLabels:true},
+  sequence:{actorMargin:50,width:130,useMaxWidth:true}
+});
+</script>
+</body>
+</html>
