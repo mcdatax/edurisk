@@ -1,14 +1,17 @@
 # Python
 __pycache__/
 *.py[oc]
+*.py[cod]
+*$py.class
 build/
 dist/
 wheels/
 *.egg-info
 
 # Entornos virtuales
-.venv
+.venv/
 venv/
+env/
 
 # macOS
 .DS_Store
@@ -16,25 +19,15 @@ venv/
 # VS Code
 .vscode/
 
-# uv
-uv.lock
+# Jupyter
+.ipynb_checkpoints/
 
-# Datos — no subir raw ni procesados
-data/raw/
-data/processed/
-data/train/
-data/test/
-
-# Modelos entrenados — solo subimos el final
-models/trained_model_*.pkl
-models/trained_model_*.pkl.sha256
-models/trained_model_kmeans.pkl.sha256
-
-# Docs — presentaciones y documentos grandes
-docs/.vscode/
-.vscode/
-
-# Archivos de configuración local
-.python-version
+# Configuración local
 .env
 .env.local
+.python-version
+
+# Datos raw — CSV original no se sube (licencia UCI + peso)
+# Los splits procesados SÍ se suben para reproducibilidad
+data/raw/*.csv
+data/raw/*.sha256
