@@ -189,5 +189,4 @@ MIT License — ver [LICENSE](LICENSE) para más detalles.
 
 ---
 
-*Proyecto desarrollado durante el Bootcamp de Data Science en The Bridge (2025)*  
-*Dataset: UCI ML Repository #697 — Realinho et al. (2022)*
+*Dataset: UCI ML Repository #697, Realinho et al. (2022)*
