@@ -167,7 +167,6 @@ edurisk/
 
 ## 🔄 Próximos pasos (v2.0)
 
-- [ ] SHAP values para explicabilidad individual por estudiante
 - [ ] Airflow DAG para ingesta automática de nuevas matrículas
 - [ ] Migración de SQLite a PostgreSQL para producción
 - [ ] Optimización bayesiana de hiperparámetros con Optuna
@@ -178,7 +177,7 @@ edurisk/
 
 ## 👩‍💻 Autor
 
-**Mane** · Data Scientist & Data Engineer  
+**Manuel Correa** · Data Scientist & Data Engineer  
 📍 Madrid, España  
 🔗 [GitHub](https://github.com/mcdatax) · [LinkedIn](https://linkedin.com/in/tu-perfil)
 
